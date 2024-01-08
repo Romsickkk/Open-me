@@ -1,10 +1,14 @@
 let isMusicPlaying = false;
 let stopInterval = false;
+let backgroundColor = document.querySelector(".backgroundColor");
 let pointEat = document.getElementById("pointEat");
 let firstAudio = document.getElementById("firstAudio");
+let secondAudio = document.getElementById("secondAudio");
 let firstPoint = document.getElementById("firstPoint");
+let fivePoints = document.getElementById("fivePoints");
 let tenPoints = document.getElementById("tenPoints");
 let loseSound = document.getElementById("loseSound");
+let fifteenPoints = document.getElementById("fifteenPoints");
 
 let volumeIncreaseRate = 0.015; // Регулируйте этот параметр для управления скоростью увеличения громкости
 let targetVolume = 0.3; // Регулируйте этот параметр для установки желаемой конечной громкости
@@ -15,8 +19,13 @@ let lowVolume = 0.05;
 // Ceck is audio ended
 
 //Start and STOP music
+function startLowSoundMusic(music) {
+  music.volume = 0.3;
+  music.play();
+}
+
 function startFirstMusic(music) {
-  music.currentTime = 17.5;
+  // music.currentTime = 17.5;
   music.volume = currentVolume;
   music.play();
 }
@@ -28,6 +37,21 @@ function stopMusic() {
   } else {
     firstAudio.pause();
   }
+}
+
+function newMusicStart(oldMusic, newMusic) {
+  clearInterval(decreaseProcess);
+  incriseProcess = setInterval(
+    (oldMusic, newMusic) => {
+      if (oldMusic.volume > 0 || newMusic.volume < targetVolume) {
+        oldMusic.volume -= volumeIncreaseRate;
+        newMusic.volume -= volumeIncreaseRate;
+      }
+    },
+    50, // Устанавливаем интервал для увеличения громкости
+    oldMusic,
+    newMusic
+  );
 }
 
 //
@@ -70,7 +94,7 @@ function increaseVolume(music) {
 
       music.volume += volumeIncreaseRate;
     },
-    50, // Устанавливаем интервал для увеличения громкости
+    50,
     music
   );
 }
@@ -84,30 +108,49 @@ function playFirstMusic() {
     stopMusic();
   }
 }
+
+// Shwitch all music and sounds
 let soundsInterval;
 let firstPlay = true;
 let secondPlay = true;
 let thirdPlay = true;
+let fourthPlay = true;
 soundsInterval = setInterval(() => {
   if (stopInterval === false) {
     playFirstMusic();
   } else if (score == 1 && firstPlay) {
+    backgroundColor.style.backgroundColor = "#7c3aed";
     decreaseVolume(firstAudio);
     pointSound(firstPoint);
     runMyFunc(increaseVolume, getSoundDuratin(firstPoint), firstAudio);
     firstPlay = false;
   } else if (score >= 5 && secondPlay == true) {
-    newInterval(100);
+    backgroundColor.style.backgroundColor = "#6d28d9";
+    newInterval(180);
     decreaseVolume(firstAudio);
-
-    runMyFunc(increaseVolume, getSoundDuratin(tenPoints), firstAudio);
+    pointSound(fivePoints);
+    runMyFunc(increaseVolume, getSoundDuratin(fivePoints), firstAudio);
+    backgroundColor.style.backgroundColor = "#5b21b6";
     secondPlay = false;
   } else if (score >= 10 && thirdPlay === true) {
-    newInterval(100);
+    backgroundColor.style.backgroundColor = "#4c1d95";
+    newInterval(150);
     decreaseVolume(firstAudio);
-    // pointSound(tenPoints);
+    pointSound(tenPoints);
     runMyFunc(increaseVolume, getSoundDuratin(tenPoints), firstAudio);
     thirdPlay = false;
+  } else if (score >= 15 && fourthPlay === true) {
+    backgroundColor.style.backgroundColor = "#2e1065";
+    newInterval(130);
+    decreaseVolume(firstAudio);
+    pointSound(fifteenPoints);
+    runNewMyFunc(
+      newMusicStart,
+      getSoundDuratin(fifteenPoints),
+      firstAudio,
+      secondAudio
+    );
+    fourthPlay = false;
   }
 }, 100);
 
@@ -115,8 +158,10 @@ function clearAllMusics() {
   firstAudio.pause();
   firstPoint.pause();
   tenPoints.pause();
+  secondAudio.pause();
 }
 
+//Quieting the music
 function sleep(milliseconds) {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
@@ -124,4 +169,11 @@ function sleep(milliseconds) {
 async function runMyFunc(funcName, milliseconds, ...arg) {
   await sleep(milliseconds);
   funcName(...arg);
+}
+
+// Clearing old music and start new
+async function runNewMyFunc(funcName, milliseconds, clear, write) {
+  await sleep(milliseconds);
+  startLowSoundMusic(write);
+  funcName(clear, write);
 }

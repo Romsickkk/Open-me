@@ -81,17 +81,30 @@ function drowGame() {
   ctx.fillText(score, box * 2.5, box * 2);
 
   //Snake Movement
+  function foodFunc() {
+    while (true) {
+      food = {
+        x: Math.floor(Math.random() * Math.floor(box / 2) + 1) * box,
+        y: Math.floor(Math.random() * 15 + 3) * box,
+      };
+      if (
+        food.x < box + 1 ||
+        food.x > box * Math.floor(box / 2) - 1 ||
+        food.y < 3 * box + 1 ||
+        food.y > box * Math.floor(box / 2) - 1
+      ) {
+      } else {
+        return food;
+      }
+    }
+  }
 
   let snakeX = snake[0].x;
   let snakeY = snake[0].y;
   if (snakeX == food.x && snakeY == food.y) {
     oldFood = newFood;
     score++;
-    food = {
-      x: Math.floor(Math.random() * Math.floor(box / 2) + 1) * box,
-      y: Math.floor(Math.random() * 15 + 4) * box,
-    };
-
+    foodFunc();
     newFood = randomFoodFunc(allFoods);
     funcPoint(pointEat);
   } else {
@@ -107,7 +120,8 @@ function drowGame() {
     clearInterval(game);
     clearAllMusics();
     pointSound(loseSound, firstAudio);
-    firstAudio.pause();
+
+    backgroundColor.style.backgroundColor = "#4c0519";
   }
   function eatTail(head, arr) {
     for (let i = 0; i < arr.length; i++) {
@@ -115,39 +129,10 @@ function drowGame() {
         clearInterval(game);
         clearAllMusics();
         pointSound(loseSound, firstAudio);
-        firstAudio.pause();
+
+        backgroundColor.style.backgroundColor = "#4c0519";
       }
     }
-  }
-  // function eatFood() {
-  //   while (true) {
-  //     food = {
-  //       x: Math.floor(Math.random() * Math.floor(box / 2) + 1) * box,
-  //       y: Math.floor(Math.random() * 15 + 3) * box,
-  //     };
-  //     if (
-  //       food < box &&
-  //       food > box * Math.floor(box / 2) &&
-  //       food < 3 * box &&
-  //       food > box * Math.floor(box / 2) &&
-  //       food != snakeX &&
-  //       food != snakeY
-  //     ) {
-  //       return food;
-  //     }
-  //   }
-  // }
-
-  if (
-    food.x < box ||
-    food.x > box * Math.floor(box / 2) ||
-    food.y < 3 * box ||
-    food.y > box * Math.floor(box / 2)
-  ) {
-    food = {
-      x: Math.floor(Math.random() * Math.floor(box / 2) + 1) * box,
-      y: Math.floor(Math.random() * 15 + 3) * box,
-    };
   }
 
   if (dir == "left") snakeX -= box;
@@ -161,19 +146,13 @@ function drowGame() {
   };
   eatTail(newHead, snake);
   snake.unshift(newHead);
-  console.log(snake);
 }
 
 //Game Interval
 let game;
-// let gameIntervalNum = 180;
-game = setInterval(drowGame, 100);
-// let middleGame = setInterval(drowGame, 100);
-// let hardGame = setInterval(drowGame, 50);
+game = setInterval(drowGame, 200);
 function newInterval(newIntervalNum) {
   clearInterval(game);
 
   game = setInterval(drowGame, newIntervalNum);
 }
-// const fonSound = document.querySelector(".fonSound");
-// fonSound.remove();
