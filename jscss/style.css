@@ -1,28 +1,25 @@
 canvas {
   display: block;
-  margin: 0 auto;
 }
 
 audio {
   display: none;
 }
 .backgroundColor {
-  background-color: #a78bfa;
+  background-color: #e9d5ff;
 }
+
 .container {
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  height: 100%; /* Высота 100% видимой области экрана */
+  margin-top: 10%;
 }
-.arrows {
-  width: 100px; /* устанавливаем ширину */
+
+.wasd img,
+.arrows img {
+  max-width: 100px;
   height: auto;
-  position: absolute; /* Устанавливаем позиционирование элемента относительно его нормального местоположения */
-  top: 600px; /* Перемещаем изображение вниз на 20 пикселей относительно его нормального местоположения */
-  left: 0px;
-}
-.wasd {
-  width: 100px; /* устанавливаем ширину */
-  height: auto;
-  position: absolute; /* Устанавливаем позиционирование элемента относительно его нормального местоположения */
-  top: 600px; /* Перемещаем изображение вниз на 20 пикселей относительно его нормального местоположения */
-  right: 0;
+  margin: 0px 18px -18px 18px;
 }

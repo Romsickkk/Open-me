@@ -121,7 +121,7 @@ function drowGame() {
     clearAllMusics();
     pointSound(loseSound, firstAudio);
 
-    backgroundColor.style.backgroundColor = "#4c0519";
+    backgroundColor.style.backgroundColor = "#FF0000";
   }
   function eatTail(head, arr) {
     for (let i = 0; i < arr.length; i++) {
@@ -130,7 +130,7 @@ function drowGame() {
         clearAllMusics();
         pointSound(loseSound, firstAudio);
 
-        backgroundColor.style.backgroundColor = "#4c0519";
+        backgroundColor.style.backgroundColor = "#FF0000";
       }
     }
   }

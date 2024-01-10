@@ -9,11 +9,14 @@
   </head>
   <body class="backgroundColor">
     <div class="container">
-      <img class="arrows" src="content/arrows.png" alt="arrows изображения" />
-      <img class="wasd" src="content/wasd.png" alt="wasd изображения" />
+      <div class="wasd">
+        <img src="content/wasd.png" alt="wasd изображения" />
+      </div>
+      <canvas class="gameDiv" id="game" width="608" height="608"></canvas>
+      <div class="arrows">
+        <img src="content/arrows.png" alt="arrows изображения" />
+      </div>
     </div>
-
-    <canvas class="" id="game" width="608" height="608"></canvas>
     <audio class="" id="pointEat" controls>
       <source src="content/pointEat.mp3" type="audio/mp3" />
     </audio>
@@ -46,6 +49,7 @@
       <source src="content/loseSound.mp3" type="audio/mp3" />
     </audio>
   </body>
+
   <script src="jscss/audio.js"></script>
   <script src="jscss/script.js"></script>
 </html>

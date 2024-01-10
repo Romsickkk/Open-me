@@ -11,7 +11,7 @@ let loseSound = document.getElementById("loseSound");
 let fifteenPoints = document.getElementById("fifteenPoints");
 
 let volumeIncreaseRate = 0.015; // Регулируйте этот параметр для управления скоростью увеличения громкости
-let targetVolume = 0.3; // Регулируйте этот параметр для установки желаемой конечной громкости
+let targetVolume = 0.2; // Регулируйте этот параметр для установки желаемой конечной громкости
 let currentVolume = 0;
 let muteVolume = 0;
 let lowVolume = 0.05;
@@ -119,28 +119,28 @@ soundsInterval = setInterval(() => {
   if (stopInterval === false) {
     playFirstMusic();
   } else if (score == 1 && firstPlay) {
-    backgroundColor.style.backgroundColor = "#7c3aed";
+    backgroundColor.style.backgroundColor = "#d8b4fe";
     decreaseVolume(firstAudio);
     pointSound(firstPoint);
     runMyFunc(increaseVolume, getSoundDuratin(firstPoint), firstAudio);
     firstPlay = false;
   } else if (score >= 5 && secondPlay == true) {
-    backgroundColor.style.backgroundColor = "#6d28d9";
+    backgroundColor.style.backgroundColor = "#c084fc";
     newInterval(180);
     decreaseVolume(firstAudio);
     pointSound(fivePoints);
     runMyFunc(increaseVolume, getSoundDuratin(fivePoints), firstAudio);
-    backgroundColor.style.backgroundColor = "#5b21b6";
+    backgroundColor.style.backgroundColor = "#a855f7";
     secondPlay = false;
   } else if (score >= 10 && thirdPlay === true) {
-    backgroundColor.style.backgroundColor = "#4c1d95";
+    backgroundColor.style.backgroundColor = "#9333ea";
     newInterval(150);
     decreaseVolume(firstAudio);
     pointSound(tenPoints);
     runMyFunc(increaseVolume, getSoundDuratin(tenPoints), firstAudio);
     thirdPlay = false;
   } else if (score >= 15 && fourthPlay === true) {
-    backgroundColor.style.backgroundColor = "#2e1065";
+    backgroundColor.style.backgroundColor = "#7e22ce";
     newInterval(130);
     decreaseVolume(firstAudio);
     pointSound(fifteenPoints);
@@ -157,7 +157,9 @@ soundsInterval = setInterval(() => {
 function clearAllMusics() {
   firstAudio.pause();
   firstPoint.pause();
+  fivePoints.pause();
   tenPoints.pause();
+  fifteenPoints.pause();
   secondAudio.pause();
 }
 
