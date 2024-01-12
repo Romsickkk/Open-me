@@ -9,6 +9,7 @@ let fivePoints = document.getElementById("fivePoints");
 let tenPoints = document.getElementById("tenPoints");
 let loseSound = document.getElementById("loseSound");
 let fifteenPoints = document.getElementById("fifteenPoints");
+let gameOver = document.getElementById("gameOver");
 
 let volumeIncreaseRate = 0.015; // Регулируйте этот параметр для управления скоростью увеличения громкости
 let targetVolume = 0.2; // Регулируйте этот параметр для установки желаемой конечной громкости
@@ -115,6 +116,8 @@ let firstPlay = true;
 let secondPlay = true;
 let thirdPlay = true;
 let fourthPlay = true;
+let fifthPlay = true;
+let sixthPlay = true;
 soundsInterval = setInterval(() => {
   if (stopInterval === false) {
     playFirstMusic();
@@ -151,6 +154,12 @@ soundsInterval = setInterval(() => {
       secondAudio
     );
     fourthPlay = false;
+  } else if (score >= 20 && fifthPlay === true) {
+    newInterval(110);
+    fifthPlay = false;
+  } else if (score >= 25 && sixthPlay === true) {
+    newInterval(90);
+    sixthPlay = false;
   }
 }, 100);
 

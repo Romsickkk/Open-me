@@ -120,7 +120,8 @@ function drowGame() {
     clearInterval(game);
     clearAllMusics();
     pointSound(loseSound, firstAudio);
-
+    openPopup();
+    startLowSoundMusic(gameOver);
     backgroundColor.style.backgroundColor = "#FF0000";
   }
   function eatTail(head, arr) {
@@ -129,7 +130,8 @@ function drowGame() {
         clearInterval(game);
         clearAllMusics();
         pointSound(loseSound, firstAudio);
-
+        openPopup();
+        startLowSoundMusic(gameOver);
         backgroundColor.style.backgroundColor = "#FF0000";
       }
     }

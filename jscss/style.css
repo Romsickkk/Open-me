@@ -9,12 +9,16 @@ audio {
   background-color: #e9d5ff;
 }
 
+.textImg {
+  max-width: 100px;
+  margin-top: 10px;
+}
+
 .container {
   display: flex;
   justify-content: center;
   align-items: end;
-  height: 100%; /* Высота 100% видимой области экрана */
-  margin-top: 10%;
+  height: 100%;
 }
 
 .wasd img,
@@ -22,4 +26,90 @@ audio {
   max-width: 100px;
   height: auto;
   margin: 0px 18px -18px 18px;
+}
+
+/* Popup */
+.popup {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+.background-popup {
+  color: #000000;
+}
+
+body {
+  font-family: "Raleway", sans-serif;
+}
+
+.popup {
+  position: absolute;
+  top: -150%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.2);
+  opacity: 0;
+  width: 450px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.15);
+  transition: top 0ms ease-in-out 300ms, opacity 300ms ease-in-out 0ms,
+    transform 300ms ease-in-out 0ms;
+}
+.popup.active {
+  top: 50%;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  transition: top 0ms ease-in-out 0ms, opacity 200ms ease-in-out 0ms,
+    transform 200ms ease-in-out 0ms;
+}
+.popup .head {
+  padding: 30px 20px;
+  background: #578a34;
+  text-align: center;
+}
+.popup .head .icon .box {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  background: #aad751;
+  font-size: 40px;
+  line-height: 80px;
+  color: #57af57;
+  border-radius: 50%;
+}
+.popup .body {
+  padding: 20px;
+  text-align: center;
+}
+.popup .body h1 {
+  font-size: 25px;
+  margin-bottom: 10px;
+  color: #222;
+}
+.popup .body p {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 20px;
+}
+.popup .body .close-btn {
+  margin-right: 20px;
+  padding: 10px 20px;
+  border: 1px solid #000000;
+  color: #000000;
+  background: #fff;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+}
+
+.popup .body .btn-no:hover {
+  opacity: 0;
+  cursor: default;
+  transition: 100ms ease-out 100ms;
+}
+
+.popup .body .btn-yes:hover {
+  background: #aad751;
+  transition: background-color 300ms ease-out 100ms;
 }
