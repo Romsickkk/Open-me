@@ -15,7 +15,6 @@ const foodStrawberry = new Image();
 foodStrawberry.src = "content/foodStrawberry.png";
 
 // Random food icon
-
 const allFoods = [foodCherry, foodCoconut, foodStrawberry];
 let newFood = allFoods[Math.floor(Math.random() * allFoods.length)];
 let oldFood;
@@ -75,6 +74,7 @@ function drowGame() {
     ctx.fillStyle = i == 0 ? "red" : "green";
     ctx.fillRect(snake[i].x, snake[i].y, box, box);
   }
+
   //Score
   ctx.fillStyle = "white";
   ctx.font = "50px Arial";
@@ -110,6 +110,7 @@ function drowGame() {
   } else {
     snake.pop();
   }
+
   // Game LOST
   if (
     snakeX < box ||

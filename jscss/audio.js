@@ -11,13 +11,11 @@ let loseSound = document.getElementById("loseSound");
 let fifteenPoints = document.getElementById("fifteenPoints");
 let gameOver = document.getElementById("gameOver");
 
-let volumeIncreaseRate = 0.015; // Регулируйте этот параметр для управления скоростью увеличения громкости
-let targetVolume = 0.2; // Регулируйте этот параметр для установки желаемой конечной громкости
+let volumeIncreaseRate = 0.015;
+let targetVolume = 0.2;
 let currentVolume = 0;
 let muteVolume = 0;
 let lowVolume = 0.05;
-
-// Ceck is audio ended
 
 //Start and STOP music
 function startLowSoundMusic(music) {
@@ -160,6 +158,9 @@ soundsInterval = setInterval(() => {
   } else if (score >= 25 && sixthPlay === true) {
     newInterval(90);
     sixthPlay = false;
+  } else if (score === 30) {
+    clearInterval(game);
+    clearAllMusics();
   }
 }, 100);
 
