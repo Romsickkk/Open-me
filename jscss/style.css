@@ -113,3 +113,8 @@ body {
   background: #aad751;
   transition: background-color 300ms ease-out 100ms;
 }
+
+.snakeGif {
+  margin-bottom: -20px;
+  margin-top: 10px;
+}
